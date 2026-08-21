@@ -11,7 +11,7 @@ export default function ApiAnalytics() {
     const fetchApiLogs = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`http://localhost:8082/api/v1/logs?lines=${lines}&file=api-server.log&category=all&identifier=all&start_time=&end_time=&ts_start=&ts_end=`);
+        const res = await fetch(`/api/v1/logs?lines=${lines}&file=api-server.log&category=all&identifier=all&start_time=&end_time=&ts_start=&ts_end=`);
         const json = await res.json();
         setLogs(json.data || []);
       } catch (err) {

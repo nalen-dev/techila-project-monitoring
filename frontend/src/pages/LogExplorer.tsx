@@ -51,7 +51,7 @@ export default function LogExplorer() {
   const fetchLogs = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:8082/api/v1/logs?lines=${lines}&file=${selectedFile}&category=${category}&identifier=${identifier}&start_time=${startTime}&end_time=${endTime}&ts_start=${tsStart}&ts_end=${tsEnd}`);
+      const res = await fetch(`/api/v1/logs?lines=${lines}&file=${selectedFile}&category=${category}&identifier=${identifier}&start_time=${startTime}&end_time=${endTime}&ts_start=${tsStart}&ts_end=${tsEnd}`);
       const json = await res.json();
       setLogs(json.data || []);
       setParsedData(json.parsedData || []);
