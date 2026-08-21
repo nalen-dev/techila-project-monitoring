@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: techila_backend
+    restart: always
+    volumes:
+      # Map the local resource logs to /resource/logs inside the container
+      # since the backend code reads from "../resource/logs/" and runs from "/app/"
+      - ./resource/logs:/resource/logs
+    # Exposing the port is optional here because the frontend Nginx proxy handles routing
+    # But useful if we want direct API access for debugging
+    ports:
+      - "8082:8082"
+    networks:
+      - monitoring_net
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: techila_frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - monitoring_net
+
+networks:
+  monitoring_net:
+    driver: bridge
