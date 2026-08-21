@@ -23,7 +23,7 @@ services:
     container_name: techila_frontend
     restart: always
     ports:
-      - "80:80"
+      - "8083:80"
     depends_on:
       - backend
     networks:
